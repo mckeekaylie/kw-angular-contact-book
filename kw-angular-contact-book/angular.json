@@ -68,7 +68,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "buildTarget": "kw-angular-contact-book:build:development",
-            "proxyConfig": "src/proxy.conf.json"
+            "proxyConfig": "../proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -96,6 +96,14 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.css"],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/kw-angular-contact-book",
+            "netlifyToken": "nfp_AKGZKAXVKhog5FK7zyVvtLnBoSioFpRcff91",
+            "siteId": "9e8b1135-22cd-4c59-9ab1-bf4b6620ba95"
           }
         }
       }
