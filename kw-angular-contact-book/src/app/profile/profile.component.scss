@@ -1,0 +1,35 @@
+@use "../../assets/sass/variables" as vars;
+
+.profile {
+    background-color: vars.$gray1;
+    height: 100vh;
+}
+
+.person {
+    background-color: vars.$rose;
+    padding: .5rem;
+}
+
+h1 {
+    color: white;
+    font-weight: 600;
+}
+
+h5 {
+    font-weight: 400;
+}
+
+.section-header {
+    color: vars.$plum;
+    font-weight: 500;
+    padding: .5rem 0;
+    border-bottom: .15rem solid vars.$plum;
+}
+.avatar {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 4rem;
+    border: 0.5rem solid vars.$coral;
+    overflow: hidden;
+    background-size: contain;
+}
