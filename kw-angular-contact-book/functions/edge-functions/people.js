@@ -1,6 +1,6 @@
-import { readFileSync } from "fs";
+import * as fs from "fs";
 
-const data = readFileSync("functions/people.json", {
+const data = fs.readFileSync("functions/people.json", {
   encoding: "utf8",
   flag: "r",
 });
