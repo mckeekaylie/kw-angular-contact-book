@@ -1,6 +1,6 @@
 import * as fs from "fs";
 
-const data = fs.readFileSync("functions/people.json", {
+const data = await fs.readFileSync("functions/people.json", {
   encoding: "utf8",
   flag: "r",
 });

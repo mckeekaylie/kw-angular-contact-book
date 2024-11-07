@@ -10,6 +10,16 @@ export class PeopleServiceService {
   constructor(private http: HttpClient) {}
 
   public getPeople() {
-    return this.http.get<any>(`${environment.apiUrl}`);
+    fetch('/api/people')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.msg); // 'hello world'
+        return data;
+      });
+
+    // return this.http.get<any>(`${environment.apiUrl}`);
   }
 }
+// fetch('/api/hello').then(res => res.json()).then(data => {
+//   console.log(data.msg) // 'hello world'
+// })
