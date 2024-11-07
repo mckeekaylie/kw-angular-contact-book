@@ -65,8 +65,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "kw-angular-contact-book:build:development",
-            "proxyConfig": "../proxy.conf.json"
+            "buildTarget": "kw-angular-contact-book:build:development"
           },
           "configurations": {
             "production": {

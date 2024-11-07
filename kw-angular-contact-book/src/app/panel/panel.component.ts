@@ -5,7 +5,9 @@ import {
   faAddressBook,
   faSortAmountUp,
   faSortAmountDown,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'panel',
@@ -14,24 +16,76 @@ import {
 })
 export class PanelComponent implements OnInit {
   entries!: Array<Person>;
-  entriesAlphabetical!: Array<Person>;
+
+  private contactsAbc = new BehaviorSubject<Person[] | null>(null);
+  contactsAbc$ = this.contactsAbc.asObservable();
 
   @Output() personSelected: EventEmitter<Person> = new EventEmitter();
+
   faAddressBook = faAddressBook;
   faSortAmountUp = faSortAmountUp;
   faSortAmountDown = faSortAmountDown;
+  faSearch = faSearch;
+
+  get contacts(): Person[] | null {
+    return this.contactsAbc.value;
+  }
+
+  set contacts(contacts: Person[]) {
+    this.contactsAbc.next(contacts);
+  }
 
   constructor(private peopleService: PeopleServiceService) {}
 
   ngOnInit(): void {
-    this.getPeopleDetails();
+    this.peopleService.getPeople().then((data) => {
+      this.entries = data.people;
+      this.getContacts();
+      this.personSelected.emit(data.people[0]);
+    });
   }
 
-  getPeopleDetails() {
-    this.peopleService.getPeople().then((data) => {
-      console.log(data);
-      this.entries = data;
-      this.entriesAlphabetical = this.entries.sort(function (a, b) {
+  getContacts() {
+    const sortedContacts = this.entries.sort(function (a, b) {
+      var nameA = a.name.toUpperCase();
+      var nameB = b.name.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+
+    this.contacts = sortedContacts;
+  }
+
+  showProfile(person: Person) {
+    this.personSelected.emit(person);
+  }
+
+  changeSortDesc() {
+    if (this.contacts) {
+      const sortedContactsDesc = this.contacts.sort(function (a, b) {
+        var nameA = a.name.toUpperCase();
+        var nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+          return 1;
+        }
+        if (nameA > nameB) {
+          return -1;
+        }
+        return 0;
+      });
+
+      this.contacts = sortedContactsDesc;
+    }
+  }
+
+  changeSortAsc() {
+    if (this.contacts) {
+      const sortedContactsDesc = this.contacts.sort(function (a, b) {
         var nameA = a.name.toUpperCase();
         var nameB = b.name.toUpperCase();
         if (nameA < nameB) {
@@ -42,49 +96,23 @@ export class PanelComponent implements OnInit {
         }
         return 0;
       });
-    });
-  }
 
-  showProfile(person: any) {
-    this.personSelected.emit(person);
-  }
-
-  changeSortDesc() {
-    return this.entriesAlphabetical.sort(function (a, b) {
-      var nameA = a.name.toUpperCase();
-      var nameB = b.name.toUpperCase();
-      if (nameA < nameB) {
-        return 1;
-      }
-      if (nameA > nameB) {
-        return -1;
-      }
-      return 0;
-    });
-  }
-
-  changeSortAsc() {
-    return this.entriesAlphabetical.sort(function (a, b) {
-      var nameA = a.name.toUpperCase();
-      var nameB = b.name.toUpperCase();
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
+      this.contacts = sortedContactsDesc;
+    }
   }
 
   filter(event: any) {
     let search = event.target.value.toString().toUpperCase();
-    if (search) {
-      this.entriesAlphabetical = this.entriesAlphabetical.filter((x) =>
+
+    if (this.contacts && event.inputType !== 'deleteContentBackward') {
+      const filteredContacts = this.contacts.filter((x) =>
         x.name.toUpperCase().includes(search),
       );
-    } else {
-      this.getPeopleDetails();
+      this.contacts = filteredContacts;
+    }
+
+    if (event.inputType === 'deleteContentBackward') {
+      this.getContacts();
     }
   }
 }

@@ -1,0 +1,9 @@
+{
+  "deno.enable": true,
+  "deno.enablePaths": [
+    "kw-angular-contact-book/functions/edge-functions"
+  ],
+  "deno.unstable": true,
+  "deno.importMap": ".netlify/edge-functions-import-map.json",
+  "deno.path": "/Users/kayliemckee/Library/Preferences/netlify/deno-cli/deno"
+}

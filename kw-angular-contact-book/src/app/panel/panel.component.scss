@@ -1,43 +1,39 @@
 @use "../../assets/sass/variables" as vars;
 
 .panel {
-    background-color: vars.$gray3;
-    height: 100vh;
+  background-color: vars.$gray3;
+  height: 100vh;
 }
 
 .title {
-    color: vars.$coral;
+  color: vars.$coral;
 }
 
 .btn-secondary {
-    background-color: vars.$gray1!important;
-    border-color: vars.$gray1!important;
-}
-
-.btnRight {
-    margin-left: 10px;
+  background-color: vars.$gray1 !important;
+  border-color: vars.$gray1 !important;
 }
 
 .nameLink {
-    width: 100%;
-    padding: .8rem;
-    margin: .5rem;
-    border-radius: 1rem;
-    background-color: vars.$coral;
-    color: vars.$plum;
-    font-weight: 600;
-    font-size: 1.14rem;
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem;
+  border-radius: 1rem;
+  background-color: vars.$coral;
+  color: vars.$plum;
+  font-weight: 600;
+  font-size: 1.14rem;
 }
 
 .nameLink:hover {
-    cursor: pointer;
-    background-color: vars.$plum;
-    color: vars.$coral;
+  cursor: pointer;
+  background-color: vars.$plum;
+  color: vars.$coral;
 }
 
 .namesContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
