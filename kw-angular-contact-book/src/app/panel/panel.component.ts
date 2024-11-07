@@ -104,15 +104,12 @@ export class PanelComponent implements OnInit {
   filter(event: any) {
     let search = event.target.value.toString().toUpperCase();
 
-    if (this.contacts && event.inputType !== 'deleteContentBackward') {
+    if (this.contacts) {
+      this.getContacts();
       const filteredContacts = this.contacts.filter((x) =>
         x.name.toUpperCase().includes(search),
       );
       this.contacts = filteredContacts;
-    }
-
-    if (event.inputType === 'deleteContentBackward') {
-      this.getContacts();
     }
   }
 }
