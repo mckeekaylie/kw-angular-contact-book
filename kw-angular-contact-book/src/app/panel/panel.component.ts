@@ -28,7 +28,7 @@ export class PanelComponent implements OnInit {
   }
 
   getPeopleDetails() {
-    this.peopleService.getPeople().subscribe((data) => {
+    this.peopleService.getPeople().then((data) => {
       console.log(data);
       this.entries = data;
       this.entriesAlphabetical = this.entries.sort(function (a, b) {
