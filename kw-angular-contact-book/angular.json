@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/kw-angular-contact-book/browser",
+            "outputPath": "dist/kw-angular-contact-book",
             "index": "src/index.html",
             "polyfills": ["src/polyfills.ts"],
             "tsConfig": "tsconfig.app.json",
@@ -99,7 +99,7 @@
         "deploy": {
           "builder": "@netlify-builder/deploy:deploy",
           "options": {
-            "outputPath": "dist/kw-angular-contact-book/browser",
+            "outputPath": "dist/kw-angular-contact-book",
             "netlifyToken": "nfp_AKGZKAXVKhog5FK7zyVvtLnBoSioFpRcff91",
             "siteId": "9e8b1135-22cd-4c59-9ab1-bf4b6620ba95"
           }
