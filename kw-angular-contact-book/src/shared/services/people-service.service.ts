@@ -10,6 +10,6 @@ export class PeopleServiceService {
   constructor(private http: HttpClient) {}
 
   public getPeople() {
-    return this.http.get<Person[]>(`${environment.apiUrl}`);
+    return this.http.get<any>(`${environment.apiUrl}`);
   }
 }

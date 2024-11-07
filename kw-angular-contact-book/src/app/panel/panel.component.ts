@@ -29,6 +29,7 @@ export class PanelComponent implements OnInit {
 
   getPeopleDetails() {
     this.peopleService.getPeople().subscribe((data) => {
+      console.log(data);
       this.entries = data;
       this.entriesAlphabetical = this.entries.sort(function (a, b) {
         var nameA = a.name.toUpperCase();

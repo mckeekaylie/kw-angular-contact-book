@@ -11,9 +11,8 @@ const people = require(path.join(__dirname, "./data/people.json"));
 app.use(cors());
 
 app.get("/api/people", function (req, res) {
-  res.json({ message: "Hello from Express!" });
-
-  res.end(JSON.stringify(people, null, "    "));
+  const jsonData = JSON.parse(people);
+  res.json(jsonData);
 });
 
 app.listen(port, () => {
