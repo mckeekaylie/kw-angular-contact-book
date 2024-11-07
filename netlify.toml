@@ -16,7 +16,7 @@
 
 [build]
   command = "npm run build"
-  publish = "dist/kw-angular-contact-book/browser"
+  publish = "dist/kw-angular-contact-book"
     edge_functions = "functions/edge-functions"
 
 
