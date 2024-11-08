@@ -1,42 +1,29 @@
-# example netlify.toml
 [functions]
-  directory = "functions"
-  included_files = ["functions/people.json"]
-    node_bundler = "esbuild"
-
+directory = "functions"
+node_bundler = "esbuild"
 
 [[edge_functions]]
-  function = "people"
-  path = "/api/people"
+function = "people"
+path = "/api/people"
 
-  [[headers]]
-  for = "/*"
-  [headers.values]
-    Access-Control-Allow-Origin = "*"
+[[headers]]
+for = "/*"
+[headers.values]
+Access-Control-Allow-Origin = "*"
 
 [build]
-  command = "npm run build"
-  publish = "dist/kw-angular-contact-book/browser"
-    edge_functions = "functions/edge-functions"
-
+command = "npm run build"
+publish = "dist/kw-angular-contact-book/browser"
+edge_functions = "functions/edge-functions"
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-    headers = { Access-Control-Allow-Origin = "*" }
+from = "/*"
+to = "/index.html"
+status = 200
+headers = { Access-Control-Allow-Origin = "*" }
 
-  [[redirects]]
+[[redirects]]
 from = "/api/people"
 to = "functions/edge_functions/people"
 status = 200
-  headers = { Access-Control-Allow-Origin = "*" }
-
-  ## (optional) Settings for Netlify Dev
-  ## https://github.com/netlify/cli/blob/main/docs/netlify-dev.md#project-detection
-  #[dev]
-  #  command = "yarn start" # Command to start your dev server
-  #  port = 3000 # Port that the dev server will be listening on
-  #  publish = "dist" # Folder with the static content for _redirect file
-
-  ## more info on configuring this file: https://ntl.fyi/file-based-build-config
+headers = { Access-Control-Allow-Origin = "*" }
