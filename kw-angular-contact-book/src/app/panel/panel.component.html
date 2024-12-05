@@ -38,6 +38,7 @@
     </div>
 
     <div class="namesContainer px-4 mt-4" *ngIf="contactsAbc$ | async as contacts">
+        <p *ngIf="!contacts.length" class="fw-600 fs-4">No contacts found.</p>
         <div *ngFor="let contact of contacts" class="nameLink" (click)="showProfile(contact)">
             <a><fa-icon class="me-2" [icon]="faAddressBook"></fa-icon> {{contact.name}}</a>
         </div>
