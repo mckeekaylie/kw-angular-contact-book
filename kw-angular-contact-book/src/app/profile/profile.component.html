@@ -1,30 +1,40 @@
 <div class="profile">
     <div *ngIf="personToShow">
-        <div class="d-flex align-items-center person p-4">
-            <img src="{{personToShow.image}}" class="avatar" alt="{{personToShow.name}}"/>
-            <h1 class="ps-4">{{personToShow.name}}</h1>
-        </div>
-        <br class="clear" />
-        <div class="mb-4 px-4">
-            <h3 class="section-header"><fa-icon [icon]="faGraduationCap"></fa-icon> Education</h3>
-            <div class="my-4" *ngFor="let education of personToShow.education; let i = index;">
-                <h5>{{personToShow.education[i].institution}}</h5>
-                <ul>
-                    <li>Degree: {{personToShow.education[i].degree}}</li>
-                    <li>Start year: {{personToShow.education[i].startYear}}</li>
-                    <li>End year: {{personToShow.education[i].endYear}}</li>
-                </ul>
+        <section id="personInfo">
+            <div class="d-flex align-items-center person p-4">
+                <img src="{{personToShow.image}}" class="avatar" alt="{{personToShow.name}}" />
+                <h1 class="ps-4">{{personToShow.name}}</h1>
             </div>
-        </div>
-        <div class="my-2 px-4">
-            <h3 class="section-header"><fa-icon [icon]="faBriefcase"></fa-icon> Experience</h3>
-            <div class="my-4" *ngFor="let job of personToShow.workExperience; let i = index;">
-                <h5>{{personToShow.workExperience[i].institution}}</h5>
-                <ul>
-                    <li>Start year: {{personToShow.workExperience[i].startYear}}</li>
-                    <li>Title: {{personToShow.workExperience[i].title}}</li>
-                </ul>
+        </section>
+        <section id="education">
+            <div class="mt-2 mb-4 px-4">
+                <h2 class="section-header"><fa-icon [icon]="faGraduationCap"></fa-icon> Education</h2>
+                <figure>
+                    <div class="my-4" *ngFor="let education of personToShow.education; let i = index;">
+                        <figcaption>{{personToShow.education[i].institution}}</figcaption>
+
+                        <ul>
+                            <li>Degree: {{personToShow.education[i].degree}}</li>
+                            <li>Start year: {{personToShow.education[i].startYear}}</li>
+                            <li>End year: {{personToShow.education[i].endYear}}</li>
+                        </ul>
+                    </div>
+                </figure>
             </div>
-        </div>
+        </section>
+        <section id="experience">
+            <div class="my-2 px-4">
+                <h2 class="section-header"><fa-icon [icon]="faBriefcase"></fa-icon> Experience</h2>
+                <figure>
+                    <div class="my-4" *ngFor="let job of personToShow.workExperience; let i = index;">
+                        <figcaption>{{personToShow.workExperience[i].institution}}</figcaption>
+                        <ul>
+                            <li>Start year: {{personToShow.workExperience[i].startYear}}</li>
+                            <li>Title: {{personToShow.workExperience[i].title}}</li>
+                        </ul>
+                    </div>
+                </figure>
+            </div>
+        </section>
     </div>
 </div>

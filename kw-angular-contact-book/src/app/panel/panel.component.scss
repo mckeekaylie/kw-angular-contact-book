@@ -1,17 +1,49 @@
 @use "../../assets/sass/variables" as vars;
 
-.panel {
-  background-color: vars.$gray3;
-  height: 100vh;
+.title,
+label {
+  color: vars.$coral;
 }
 
+label {
+  font-weight: 600;
+}
+
+.panel,
+.accordion,
 .title {
-  color: vars.$coral;
+  background-color: vars.$gray3;
+}
+
+.accordion {
+  padding: 0 1.5rem 2rem 1.5rem !important;
+
+  .accordion-collapse {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: vars.$gray3;
+  }
+
+  .accordion-button {
+    font-weight: 700;
+    background-color: vars.$coral;
+    color: vars.$darkPurple;
+    font-size: 1.12rem;
+  }
+
+  .accordion-item {
+    border: 2px solid vars.$coral;
+  }
+}
+
+.dropdown-menu li:hover {
+  cursor: pointer;
 }
 
 .btn-secondary {
   background-color: vars.$gray1 !important;
   border-color: vars.$gray1 !important;
+  color: black;
 }
 
 .nameLink {
@@ -20,14 +52,14 @@
   margin: 0.5rem;
   border-radius: 1rem;
   background-color: vars.$coral;
-  color: vars.$plum;
+  color: vars.$darkPurple;
   font-weight: 600;
   font-size: 1.14rem;
 }
 
 .nameLink:hover {
   cursor: pointer;
-  background-color: vars.$plum;
+  background-color: vars.$darkPurple;
   color: vars.$coral;
 }
 
@@ -36,4 +68,10 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+}
+
+@media (min-width: 992px) {
+  .panel {
+    height: 100vh;
+  }
 }

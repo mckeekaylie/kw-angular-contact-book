@@ -5,9 +5,9 @@ import {
   faAddressBook,
   faSortAmountUp,
   faSortAmountDown,
-  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'panel',
@@ -22,10 +22,13 @@ export class PanelComponent implements OnInit {
 
   @Output() personSelected: EventEmitter<Person> = new EventEmitter();
 
+  private destroy$ = new Subject<void>();
+
   faAddressBook = faAddressBook;
   faSortAmountUp = faSortAmountUp;
   faSortAmountDown = faSortAmountDown;
-  faSearch = faSearch;
+
+  isSmallScreen = false;
 
   get contacts(): Person[] | null {
     return this.contactsAbc.value;
@@ -35,9 +38,18 @@ export class PanelComponent implements OnInit {
     this.contactsAbc.next(contacts);
   }
 
-  constructor(private peopleService: PeopleServiceService) {}
-
+  constructor(
+    private peopleService: PeopleServiceService,
+    private breakpointObserver: BreakpointObserver
+  ) {}
   ngOnInit(): void {
+    this.breakpointObserver
+      .observe(['(max-width: 991.99px)'])
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((result) => {
+        this.isSmallScreen = result.matches;
+      });
+
     this.peopleService.getPeople().then((data) => {
       this.entries = data.people;
       this.getContacts();
@@ -107,9 +119,14 @@ export class PanelComponent implements OnInit {
     if (this.contacts) {
       this.getContacts();
       const filteredContacts = this.contacts.filter((x) =>
-        x.name.toUpperCase().includes(search),
+        x.name.toUpperCase().includes(search)
       );
       this.contacts = filteredContacts;
     }
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

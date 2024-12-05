@@ -15,15 +15,16 @@ h1 {
   font-weight: 600;
 }
 
-h5 {
-  font-weight: 400;
+figcaption {
+  font-weight: 600;
+  font-size: 1.25rem;
 }
 
 .section-header {
-  color: vars.$plum;
+  color: vars.$darkPurple;
   font-weight: 500;
   padding: 0.5rem 0;
-  border-bottom: 0.15rem solid vars.$plum;
+  border-bottom: 0.15rem solid vars.$darkPurple;
 }
 
 .avatar {

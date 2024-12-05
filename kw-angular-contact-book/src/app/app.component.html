@@ -1,10 +1,14 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-4 px-0">
-            <panel (personSelected)="getProfile($event)"></panel>
+            <header>
+                <panel (personSelected)="getProfile($event)"></panel>
+            </header>
         </div>
         <div class="col-lg-8 px-0">
-            <profile [personToShow]="personToShow"></profile>
+            <section id="profile">
+                <profile [personToShow]="personToShow"></profile>
+            </section>
         </div>
     </div>
 </div>
